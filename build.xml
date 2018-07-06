@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="deep-dive-diceware" default="build">
+
+  <property name="project.name" value="deep-dive-diceware"/>
+  <property name="project.jar.name" value="deep_dive_diceware_jar"/>
+
+  <property name="output.dir" location="out/production/${project.name}"/>
+  <property name="source.dir" location="src"/>
+  <property name="jar.dir" location="out/artifacts/${project.jar.name}"/>
+
+
+  <property name="classes.jar.file" value="${project.name}.jar"/>
+  <property name="docs.jar.file" value="${project.name}-javadoc.jar"/>
+  <property name="sources.jar.file" value="${project.name}-sources.jar"/>
+  <property name="javadoc.dir" location="docs/api"/>
+
+  <fileset id="source.files" dir="${source.dir}">
+    <!-- Ant wildcard get all in all subdirectories-->
+    <include name="**/*.java"/>
+  </fileset>
+
+  <target name="compile" description="Compile Java sources">
+    <mkdir dir="${output.dir}"/>
+    <javac destdir="${output.dir}" srcdir="${source.dir}"/>
+  </target>
+
+  <target name="javadoc" description="Generate Javadoc HTML">
+    <javadoc destdir="${javadoc.dir}">
+      <fileset refid="source.files"/>
+      <link href="https://docs.oracle.com/javase/8/docs/api/"/>
+      <doctitle>Secure Passphrase Generator</doctitle>
+    </javadoc>
+  </target>
+
+  <target name="jar" depends="compile, javadoc" description="Assemble JAR file with classes.">
+    <jar basedir="${output.dir}" destfile="${jar.dir}/${classes.jar.file}"/>
+    <jar basedir="${source.dir}" destfile="${jar.dir}/${sources.jar.file}"/>
+    <jar basedir="${javadoc.dir}" destfile="${jar.dir}/${docs.jar.file}"/>
+  </target>
+
+  <target name="clean" description="cleanup module">
+    <delete dir="${output.dir}"/>
+  </target>
+  
+  <target name="build" depends="jar" description="build all"/>
+
+  <target name="rebuild" depends="clean, build" description="rebuild all"/>
+</project>

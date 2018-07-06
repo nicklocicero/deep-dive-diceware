@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="deep-dive-diceware:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/deep_dive_diceware_jar</output-path>
+    <root id="archive" name="deep-dive-diceware.jar">
+      <element id="module-output" name="deep-dive-diceware" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"edu.cnm.deepdive.diceware","l":"Generator"}]
